@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="#5df48d"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:textSize="32sp"
+        tools:ignore="MissingConstraints"
+        android:text="이름 : 한기문"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone"
+        android:textSize="32sp"
+        tools:ignore="MissingConstraints"
+        android:text="핸드폰 : 01031014871"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        tools:ignore="MissingConstraints"
+        android:background="#ffff"
+        android:text=""/>
+
+</LinearLayout>
