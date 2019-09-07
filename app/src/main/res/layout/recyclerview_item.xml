@@ -11,16 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name"
-        android:textSize="32sp"
-        tools:ignore="MissingConstraints"
-        android:text="이름 : 한기문"/>
+        android:textSize="32sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/phone"
-        android:textSize="32sp"
-        tools:ignore="MissingConstraints"
-        android:text="핸드폰 : 01031014871"/>
+        android:textSize="32sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="10dp"

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private MainRecyclerAdapter adapter;
-    private ArrayList<User> users = new ArrayList<>();;
+
     private Button btnInsert;
 
     @Override
@@ -25,33 +25,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        for (int i=0; i<20; i++){
-            User user = new User();
-            user.setName("한기문"+i);
-            user.setPhone("010-"+i);
+        init();
+    }
+
+    public void init() {
+        ArrayList<User> users = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            User user = new User("한기문" + (i+1), "010-4444-444" + (i+1));
             users.add(user);
         }
 
-        LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
-        recyclerView = (RecyclerView)findViewById(R.id.recycler);
+        LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new MainRecyclerAdapter(MainActivity.this, users,recyclerView);
+        adapter = new MainRecyclerAdapter(MainActivity.this, users); //객체 생성
         recyclerView.setAdapter(adapter);
 
         btnInsert = findViewById(R.id.btnInsert);
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("test","success");
-                User user = new User();
-                user.setName("한기문"+users.size());
-                user.setPhone("010-"+users.size());
+                User user = new User("한기문" + (adapter.getItemCount()+1),"010-4444-444"+(adapter.getItemCount()+1));
 
                 adapter.addUser(user);
-
-                Log.d("test","유저 수 : "+users.size());
+                recyclerView.scrollToPosition(adapter.getItemCount()-1);
             }
         });
     }

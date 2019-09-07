@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,19 +19,16 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter {
 
     private Context context;
     private ArrayList<User> users;
-    private RecyclerView recyclerView;
 
-    public MainRecyclerAdapter(Context context, ArrayList<User> us, RecyclerView rv) {
+    public MainRecyclerAdapter(Context context, ArrayList<User> us) {
         this.context = context;
         this.users = us;
-        this.recyclerView = rv;
     }
 
     public void addUser(User user){
         //notifyDataSetChanged();
         users.add(user);
         notifyItemInserted(users.indexOf(user));
-        recyclerView.scrollToPosition(users.size());
     }
 
     public void deleteUser(User user){
@@ -40,7 +38,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View v = LayoutInflater.from(context).inflate(R.layout.recyclerview_item, parent, false);
         ViewHolder holder = new ViewHolder(v);
         return holder;
@@ -48,7 +45,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-
         ViewHolder mHolder = (ViewHolder) viewHolder;
         mHolder.name.setText(users.get(position).getName());
         mHolder.phone.setText(users.get(position).getPhone());
@@ -61,7 +57,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter {
 
 
     class ViewHolder extends RecyclerView.ViewHolder{
-
         public TextView name;
         public TextView phone;
 
@@ -75,8 +70,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter {
                 @Override
                 public boolean onLongClick(View view) {
                     //Toast.makeText(context,"testing",Toast.LENGTH_LONG).show();
-                    final Snackbar snackbar = Snackbar.make(view, "할말", Snackbar.LENGTH_INDEFINITE);
-                    snackbar.setAction("확인", new View.OnClickListener() {
+                    final Snackbar snackbar = Snackbar.make(view, "지울게!", Snackbar.LENGTH_INDEFINITE);
+                    snackbar.setAction("응!", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             deleteUser(users.get(getLayoutPosition()));
